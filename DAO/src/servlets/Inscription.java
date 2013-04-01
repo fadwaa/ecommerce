@@ -26,7 +26,7 @@ public class Inscription extends HttpServlet {
 	 public static final String CONF_DAO_FACTORY = "daofactory";
 	    public static final String ATT_USER         = "client";
 	    public static final String ATT_FORM         = "form";
-	    public static final String VUE              = "/WEB-INF/inscription.jsp";
+	    public static final String VUE              = "/inscription.jsp";
 	    private static final String ALGO_CHIFFREMENT = "SHA-256";
 	    private ClientDao     clientDao;
 	 

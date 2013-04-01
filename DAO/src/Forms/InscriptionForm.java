@@ -55,12 +55,12 @@ public final class InscriptionForm {
 
             if ( erreurs.isEmpty() ) {
                 clientDao.creer( client );
-                resultat = "Succ√®s de l'inscription.";
+                resultat = "SuccÈe de l'inscription.";
             } else {
-                resultat = "√âchec de l'inscription.";
+                resultat = "Echec de l'inscription.";
             }
         } catch ( DAOException e ) {
-            resultat = "√âchec de l'inscription : une erreur impr√©vue est survenue, merci de r√©essayer dans quelques instants.";
+            resultat = "Echec de l'inscription : une erreur  est survenue, merci de rÈssayer dans quelques instants.";
             e.printStackTrace();
         }
 
@@ -129,10 +129,10 @@ public final class InscriptionForm {
             if ( !email.matches( "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)" ) ) {
                 throw new FormValidationException( "Merci de saisir une adresse mail valide." );
             } else if ( clientDao.trouver( email ) != null ) {
-                throw new FormValidationException( "Cette adresse email est d√©j√  utilis√©e, merci d'en choisir une autre." );
+                throw new FormValidationException( "Cette adresse email est dÈja utilisÈe, merci d'en choisir une autre." );
             }
         } else {
-            throw new FormValidationException( "Merci de saisir une adresse mail." );
+            throw new FormValidationException( "Merci de saisir une adresse mail valide." );
         }
     }
 
@@ -140,7 +140,7 @@ public final class InscriptionForm {
     private void validationMotsDePasse( String motDePasse, String confirmation ) throws FormValidationException {
         if ( motDePasse != null && confirmation != null ) {
             if ( !motDePasse.equals( confirmation ) ) {
-                throw new FormValidationException( "Les mots de passe entr√©s sont diff√©rents, merci de les saisir √  nouveau." );
+                throw new FormValidationException( "Les mots de passe entrÈes sont diffÈrents, merci de les saisir ‡ nouveau." );
             } else if ( motDePasse.length() < 3 ) {
                 throw new FormValidationException( "Les mots de passe doivent contenir au moins 3 caract√®res." );
             }

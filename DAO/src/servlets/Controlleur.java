@@ -13,24 +13,30 @@ import javax.servlet.http.HttpServletResponse;
 import listes.Catalogue;
 
 import DAO.ArticleDao;
+import DAO.ClientDao;
 import DAO.DAOFactory;
+import Forms.InscriptionForm;
 import Beans.*;
 
 @WebServlet(name = "PasserDAO", loadOnStartup = 1, urlPatterns = { "/index",
-		"/panier", "/categorie" })
+		"/panier", "/categorie","/inscription" })
 public class Controlleur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String CONF_DAO_FACTORY = "daofactory";
 	public static final String ATT_FORM = "form";
 	public static final String ATT_art = "article";
+    public static final String ATT_USER  = "client";
+    private static final String ALGO_CHIFFREMENT = "SHA-256";
 	// public static final String VUE = "/WEB-INF/test.jsp";
 	private ArticleDao articleDao;
+	private ClientDao     clientDao;
 	Vector<Beans.Article> listeArticle;
 	Catalogue c;
+	
 
 	public Controlleur() {
 		super();
-		// TODO Auto-generated constructor stub
+		// +TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -69,11 +75,30 @@ public class Controlleur extends HttpServlet {
 			request.getServletContext().getRequestDispatcher("/index.jsp")
 					.forward(request, response);
 			}
+		
+			
+			
+	
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String userPath = request.getServletPath();
+		if (userPath.equals("/inscription")) {
+			 this.getServletContext().getRequestDispatcher( "/inscription.jsp").forward(request, response);
+			
+		InscriptionForm form = new InscriptionForm( clientDao );
+		 
+        /* Traitement de la requête et récupération du bean en résultant */
+       Client client = form.inscrireClient( request );
+ 
+        /* Stockage du formulaire et du bean dans l'objet request */
+        request.setAttribute( ATT_FORM, form );
+        request.setAttribute( ATT_USER, client );
+        // response.sendRedirect(VUE);
+       this.getServletContext().getRequestDispatcher( "/inscription.jsp").forward(request, response);
 	}
+		}
 
 }

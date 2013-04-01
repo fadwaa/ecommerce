@@ -104,7 +104,7 @@
                     </ul>
                     <!--SUbmenu Ends-->
                 </li>
-                <li><a href="categorie?cat=femme">Homme</a>
+                <li><a href="categorie?cat=homme">Homme</a>
                     <!--SUbmenu Starts-->
                     <ul class="sub_menu">
                         <li> <a href="#">Men Summer Collection</a>
